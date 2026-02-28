@@ -1,0 +1,473 @@
+/* ============================================================
+   VOID TERMINAL — companies.css
+   ============================================================ */
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.co-hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 2rem 0;
+}
+
+.co-hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 760px;
+  width: 100%;
+}
+
+.co-hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 1.12;
+  color: var(--text);
+  margin: 1rem 0 1.25rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 0.3s var(--spring) forwards;
+}
+
+.co-hero-title em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.co-hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 0.45s var(--spring) forwards;
+}
+
+.co-search-row {
+  max-width: 480px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeSlideUp 0.9s 0.55s var(--spring) forwards;
+}
+
+/* ── Stats Strip ───────────────────────────────────────────── */
+.co-stats-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(13,17,23,0.6);
+  backdrop-filter: blur(8px);
+}
+
+.co-stats-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.co-stats-inner::-webkit-scrollbar { display: none; }
+
+.co-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0 2.5rem;
+  flex-shrink: 0;
+}
+
+.co-stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--amber);
+}
+
+.co-stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.co-stat-div {
+  width: 1px;
+  height: 32px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Filter Row ────────────────────────────────────────────── */
+.co-filter-row {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.co-sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.co-sort-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.co-sort-select {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border-mid);
+  border-radius: 6px;
+  padding: 0.45rem 2rem 0.45rem 0.75rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238892A4' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  transition: border-color 0.2s;
+}
+
+.co-sort-select:hover,
+.co-sort-select:focus {
+  border-color: var(--amber);
+}
+
+/* ── Company Grid ──────────────────────────────────────────── */
+.co-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+}
+
+.co-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Company Card ──────────────────────────────────────────── */
+.company-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: transform 0.4s var(--spring), box-shadow 0.4s var(--spring),
+              border-color 0.3s, opacity 0.3s var(--spring);
+}
+
+.company-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.company-card:hover {
+  transform: translateY(-8px) rotate(0.2deg);
+  box-shadow: 0 24px 64px rgba(245,166,35,0.1), 0 8px 24px rgba(0,0,0,0.4);
+  border-color: rgba(245,166,35,0.2);
+}
+
+/* Inner glow on hover */
+.company-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,0.06) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.company-card:hover::after { opacity: 1; }
+
+/* Scanline on hover (same as job cards) */
+.company-card::before {
+  content: '';
+  position: absolute;
+  top: -100%; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to bottom,
+    transparent 0%, rgba(245,166,35,0.04) 40%,
+    rgba(245,166,35,0.08) 50%, rgba(245,166,35,0.04) 60%, transparent 100%);
+  pointer-events: none;
+}
+.company-card:hover::before {
+  animation: cardScanline 0.7s var(--spring) forwards;
+}
+
+.cc-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.cc-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.cc-info { flex: 1; min-width: 0; }
+
+.cc-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.2rem;
+}
+
+.cc-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cc-industry-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  padding: 0.18rem 0.6rem;
+  border-radius: 3px;
+  border-left: 2px solid;
+}
+
+.cc-badge-fintech   { color: var(--teal);  background: var(--teal-dim);  border-color: var(--teal); }
+.cc-badge-ecomm     { color: #60A5FA;      background: rgba(96,165,250,0.1); border-color: #60A5FA; }
+.cc-badge-mobility  { color: var(--amber); background: var(--amber-dim); border-color: var(--amber); }
+.cc-badge-saas      { color: #A78BFA;      background: rgba(167,139,250,0.1); border-color: #A78BFA; }
+.cc-badge-devtools  { color: var(--red);   background: var(--red-dim);   border-color: var(--red); }
+.cc-badge-d2c       { color: #F472B6;      background: rgba(244,114,182,0.1); border-color: #F472B6; }
+
+.cc-stage {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.15rem 0.5rem;
+}
+
+.cc-tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.cc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.cc-stats {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.cc-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.cc-stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.cc-stat-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+.cc-view-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--amber);
+  background: var(--amber-dim);
+  border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+  cursor: none;
+  transition: background 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.cc-view-btn:hover {
+  background: rgba(245,166,35,0.22);
+  box-shadow: 0 0 14px var(--amber-glow);
+}
+
+/* Hiring badge */
+.cc-hiring-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.63rem;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+}
+.cc-hiring-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal);
+  animation: hirePulse 1.8s infinite;
+  flex-shrink: 0;
+}
+@keyframes hirePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.4); }
+}
+
+/* ── Featured Banner ───────────────────────────────────────── */
+.co-banner {
+  background: linear-gradient(135deg, rgba(245,166,35,0.06) 0%, rgba(0,201,167,0.04) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+.co-banner-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.co-banner-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.co-banner-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.co-banner-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.co-banner-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn-banner-primary {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #080A0F;
+  background: var(--amber);
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem 2rem;
+  cursor: none;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.btn-banner-primary:hover {
+  background: #f9b94a;
+  box-shadow: 0 0 24px var(--amber-glow);
+}
+
+.btn-banner-secondary {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  background: none;
+  border: 1px solid var(--border-mid);
+  border-radius: 8px;
+  padding: 0.85rem 2rem;
+  cursor: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-banner-secondary:hover { border-color: var(--amber); color: var(--amber); }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .co-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .btn-post-job { display: none; }
+  .nav-hamburger { display: flex; }
+  .co-filter-row { padding: 1.25rem 1rem 0; }
+  .co-main { padding: 1.5rem 1rem 4rem; }
+}
+
+@media (max-width: 600px) {
+  .co-grid { grid-template-columns: 1fr; }
+  .co-hero { min-height: 55vh; padding-bottom: 1rem; }
+  .co-banner-inner { flex-direction: column; gap: 2rem; }
+  .co-banner-cta { width: 100%; }
+  .btn-banner-primary, .btn-banner-secondary { width: 100%; text-align: center; }
+}

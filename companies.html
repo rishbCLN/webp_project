@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Companies — VoidJobs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="companies.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" data-page="browse">
+        <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link" data-page="browse">Browse</a></li>
+        <li><a href="index.html" class="nav-link" data-page="browse">Saved Jobs</a></li>
+        <li><a href="companies.html" class="nav-link active" data-page="companies">Companies</a></li>
+        <li><a href="salaries.html" class="nav-link" data-page="salaries">Salaries</a></li>
+      </ul>
+      <button class="btn-post-job"><span>Post a Job</span></button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="co-hero">
+    <canvas class="particle-canvas" id="particleCanvas"></canvas>
+    <div class="co-hero-inner">
+      <p class="hero-eyebrow">// 48 featured companies · 300+ open roles</p>
+      <h1 class="co-hero-title">India's most <em>ambitious</em><br/>tech companies, in one place</h1>
+      <p class="co-hero-sub">From unicorns to category-creators — find companies building things that matter.</p>
+      <div class="co-search-row">
+        <div class="search-box" id="coSearchBox">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" class="search-input" id="coSearch" placeholder="Search companies..." autocomplete="off" aria-label="Search companies"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="co-stats-strip">
+    <div class="co-stats-inner">
+      <div class="co-stat">
+        <span class="co-stat-num" id="visibleCount">12</span>
+        <span class="co-stat-label">companies</span>
+      </div>
+      <div class="co-stat-div"></div>
+      <div class="co-stat">
+        <span class="co-stat-num">₹ 10L</span>
+        <span class="co-stat-label">avg. min salary</span>
+      </div>
+      <div class="co-stat-div"></div>
+      <div class="co-stat">
+        <span class="co-stat-num">₹ 90L+</span>
+        <span class="co-stat-label">top band</span>
+      </div>
+      <div class="co-stat-div"></div>
+      <div class="co-stat">
+        <span class="co-stat-num">6</span>
+        <span class="co-stat-label">Indian cities</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Pills -->
+  <div class="co-filter-row" id="coFilterRow">
+    <div class="pill-bar" id="coPillBar">
+      <div class="pill-highlight" id="coPillHighlight"></div>
+      <button class="pill active" data-industry="All">All</button>
+      <button class="pill" data-industry="Fintech">Fintech</button>
+      <button class="pill" data-industry="E-Commerce">E-Commerce</button>
+      <button class="pill" data-industry="Mobility">Mobility</button>
+      <button class="pill" data-industry="SaaS">SaaS</button>
+      <button class="pill" data-industry="Dev Tools">Dev Tools</button>
+      <button class="pill" data-industry="D2C">D2C</button>
+    </div>
+    <div class="co-sort-wrap">
+      <label class="co-sort-label" for="coSort">Sort</label>
+      <select class="co-sort-select" id="coSort" aria-label="Sort companies">
+        <option value="default">Featured</option>
+        <option value="name">A → Z</option>
+        <option value="jobs">Most Open Roles</option>
+        <option value="founded">Newest First</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Company Grid -->
+  <main class="co-main">
+    <div class="co-grid" id="coGrid"></div>
+    <div class="empty-state" id="coEmpty" style="display:none;">
+      <div class="radar-container">
+        <div class="radar-ring r1"></div>
+        <div class="radar-ring r2"></div>
+        <div class="radar-ring r3"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-dot"></div>
+      </div>
+      <p class="empty-title">No companies found</p>
+      <p class="empty-sub">Try adjusting your search or filter.</p>
+    </div>
+  </main>
+
+  <!-- Featured Banner -->
+  <section class="co-banner">
+    <div class="co-banner-inner">
+      <div class="co-banner-text">
+        <p class="co-banner-eyebrow">// for employers</p>
+        <h2 class="co-banner-title">List your company.<br/>Reach India's best engineers.</h2>
+        <p class="co-banner-sub">Join 500+ companies hiring on VoidJobs. Get your role in front of 2.8M+ developers, designers, and data scientists every month.</p>
+      </div>
+      <div class="co-banner-cta">
+        <a href="index.html" class="btn-banner-primary" data-page="browse">Browse talent →</a>
+        <button class="btn-banner-secondary">Get started free</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
+        <p class="footer-tagline">// terminal-grade job search</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" data-page="browse">Browse</a>
+        <a href="companies.html" data-page="companies">Companies</a>
+        <a href="salaries.html" data-page="salaries">Salaries</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">API</a>
+      </div>
+      <p class="footer-copy">© 2026 VoidJobs. All systems nominal.</p>
+    </div>
+  </footer>
+
+  <script src="void-core.js"></script>
+  <script src="companies.js"></script>
+</body>
+</html>

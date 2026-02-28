@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoidJobs — Terminal Job Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="logoBtn">
+        <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active" data-page="browse">Browse</a></li>
+        <li><a href="#" class="nav-link" data-view="saved">Saved Jobs</a></li>
+        <li><a href="companies.html" class="nav-link" data-page="companies">Companies</a></li>
+        <li><a href="salaries.html" class="nav-link" data-page="salaries">Salaries</a></li>
+      </ul>
+      <button class="btn-post-job">
+        <span>Post a Job</span>
+      </button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <canvas class="particle-canvas" id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <p class="hero-eyebrow">// 2,847 open positions</p>
+      <h1 class="hero-headline">Find work that<br /><em>doesn't feel like work</em></h1>
+      <div class="hero-search-wrap">
+        <div class="search-box" id="searchBox">
+          <svg class="search-icon" id="searchIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder=""
+            autocomplete="off"
+            aria-label="Search jobs"
+          />
+          <button class="search-submit" id="searchSubmit" aria-label="Submit search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        <div class="search-tags">
+          <span class="search-tag" data-type="Remote">Remote</span>
+          <span class="search-tag" data-type="Full-time">Full-time</span>
+          <span class="search-tag" data-type="Part-time">Part-time</span>
+          <span class="search-tag" data-type="Contract">Contract</span>
+        </div>
+      </div>
+      <p class="hero-sub">Trusted by engineers at <span class="hero-company">Zerodha</span>, <span class="hero-company">Razorpay</span>, <span class="hero-company">Flipkart</span></p>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Job Type Pill Toggle -->
+  <div class="pill-bar-wrapper" id="pillBarWrapper">
+    <div class="pill-bar" id="pillBar">
+      <div class="pill-highlight" id="pillHighlight"></div>
+      <button class="pill active" data-type="All">All</button>
+      <button class="pill" data-type="Full-time">Full-time</button>
+      <button class="pill" data-type="Part-time">Part-time</button>
+      <button class="pill" data-type="Remote">Remote</button>
+      <button class="pill" data-type="Contract">Contract</button>
+    </div>
+    <div class="results-counter">
+      <span class="counter-label">Results</span>
+      <div class="counter-digits" id="counterDigits">
+        <span class="digit-slot" id="counterDisplay">12</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Filter Sidebar -->
+    <aside class="filter-sidebar" id="filterSidebar">
+      <div class="sidebar-header">
+        <h3 class="sidebar-title">Filters</h3>
+        <button class="clear-filters-btn" id="clearFilters">Clear All</button>
+      </div>
+
+      <!-- Location Filter -->
+      <div class="filter-section" id="filterLocation">
+        <button class="filter-toggle" aria-expanded="true">
+          <span>Location</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="filter-body open">
+          <div class="filter-content">
+            <div class="location-input-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <input type="text" class="filter-input" id="locationFilter" placeholder="City, country or remote" aria-label="Filter by location" />
+            </div>
+            <div class="location-chips">
+              <button class="loc-chip" data-loc="Remote">Remote</button>
+              <button class="loc-chip" data-loc="Bengaluru">Bengaluru</button>
+              <button class="loc-chip" data-loc="Mumbai">Mumbai</button>
+              <button class="loc-chip" data-loc="Hyderabad">Hyderabad</button>
+              <button class="loc-chip" data-loc="Noida">Noida</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job Type Filter -->
+      <div class="filter-section" id="filterJobType">
+        <button class="filter-toggle" aria-expanded="true">
+          <span>Job Type</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="filter-body open">
+          <div class="filter-content">
+            <label class="custom-checkbox">
+              <input type="checkbox" value="Full-time" class="job-type-check" />
+              <span class="checkbox-box">
+                <svg class="check-svg" viewBox="0 0 16 16" fill="none">
+                  <polyline class="check-path" points="2,8 6,12 14,4" stroke="#00C9A7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="checkbox-label">Full-time</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" value="Part-time" class="job-type-check" />
+              <span class="checkbox-box">
+                <svg class="check-svg" viewBox="0 0 16 16" fill="none">
+                  <polyline class="check-path" points="2,8 6,12 14,4" stroke="#00C9A7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="checkbox-label">Part-time</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" value="Remote" class="job-type-check" />
+              <span class="checkbox-box">
+                <svg class="check-svg" viewBox="0 0 16 16" fill="none">
+                  <polyline class="check-path" points="2,8 6,12 14,4" stroke="#00C9A7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="checkbox-label">Remote</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" value="Contract" class="job-type-check" />
+              <span class="checkbox-box">
+                <svg class="check-svg" viewBox="0 0 16 16" fill="none">
+                  <polyline class="check-path" points="2,8 6,12 14,4" stroke="#00C9A7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="checkbox-label">Contract</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Level -->
+      <div class="filter-section" id="filterExp">
+        <button class="filter-toggle" aria-expanded="true">
+          <span>Experience Level</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="filter-body open">
+          <div class="filter-content">
+            <label class="custom-radio">
+              <input type="radio" name="experience" value="All" class="exp-radio" checked />
+              <span class="radio-dot"></span>
+              <span class="radio-label">All Levels</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="experience" value="Junior" class="exp-radio" />
+              <span class="radio-dot"></span>
+              <span class="radio-label">Junior (0–2 yr)</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="experience" value="Mid" class="exp-radio" />
+              <span class="radio-dot"></span>
+              <span class="radio-label">Mid-level (2–5 yr)</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="experience" value="Senior" class="exp-radio" />
+              <span class="radio-dot"></span>
+              <span class="radio-label">Senior (5+ yr)</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="experience" value="Lead" class="exp-radio" />
+              <span class="radio-dot"></span>
+              <span class="radio-label">Lead / Principal</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Salary Range -->
+      <div class="filter-section" id="filterSalary">
+        <button class="filter-toggle" aria-expanded="true">
+          <span>Salary Range</span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="filter-body open">
+          <div class="filter-content">
+            <div class="salary-display">
+              <span id="salaryMin">₹5 L</span>
+              <span class="salary-sep">—</span>
+              <span id="salaryMax">₹120 L</span>
+            </div>
+            <div class="range-slider-wrap">
+              <div class="range-track">
+                <div class="range-fill" id="rangeFill"></div>
+              </div>
+              <input type="range" class="range-input" id="rangeMin" min="5" max="120" value="5" step="5" aria-label="Minimum salary" />
+              <input type="range" class="range-input" id="rangeMax" min="5" max="120" value="120" step="5" aria-label="Maximum salary" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Job Grid -->
+    <section class="job-grid-section">
+      <div class="job-grid" id="jobGrid">
+        <!-- Cards dynamically rendered by JS -->
+      </div>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="radar-container">
+          <div class="radar-ring r1"></div>
+          <div class="radar-ring r2"></div>
+          <div class="radar-ring r3"></div>
+          <div class="radar-sweep"></div>
+          <div class="radar-dot"></div>
+        </div>
+        <p class="empty-title">Scanning for opportunities...</p>
+        <p class="empty-sub">No jobs match your current filters. Try adjusting the search.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Saved Jobs View -->
+  <section class="saved-view" id="savedView" style="display:none;">
+    <div class="saved-view-inner">
+      <div class="saved-header">
+        <h2 class="saved-title">Saved Jobs</h2>
+        <p class="saved-sub" id="savedCount">0 bookmarked positions</p>
+      </div>
+      <div class="job-grid" id="savedGrid"></div>
+      <div class="empty-state" id="savedEmptyState" style="display:none;">
+        <div class="radar-container">
+          <div class="radar-ring r1"></div>
+          <div class="radar-ring r2"></div>
+          <div class="radar-ring r3"></div>
+          <div class="radar-sweep"></div>
+          <div class="radar-dot"></div>
+        </div>
+        <p class="empty-title">No saved jobs yet</p>
+        <p class="empty-sub">Bookmark listings and they'll appear here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Detail Modal -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="modal-inner" id="modalInner">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
+        <p class="footer-tagline">// terminal-grade job search</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">API</a>
+        <a href="#">Contact</a>
+      </div>
+      <p class="footer-copy">© 2026 VoidJobs. All systems nominal.</p>
+    </div>
+  </footer>
+
+  <script src="void-core.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

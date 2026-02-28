@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salary Intelligence — VoidJobs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="salaries.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" data-page="browse">
+        <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html"    class="nav-link" data-page="browse">Browse</a></li>
+        <li><a href="index.html"    class="nav-link" data-page="browse">Saved Jobs</a></li>
+        <li><a href="companies.html" class="nav-link" data-page="companies">Companies</a></li>
+        <li><a href="salaries.html" class="nav-link active" data-page="salaries">Salaries</a></li>
+      </ul>
+      <button class="btn-post-job"><span>Post a Job</span></button>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="sal-hero">
+    <canvas class="particle-canvas" id="particleCanvas"></canvas>
+    <div class="sal-hero-inner">
+      <p class="hero-eyebrow">// real data · 3,400+ verified salaries · updated Feb 2026</p>
+      <h1 class="sal-hero-title">Know your <em>worth</em></h1>
+      <p class="sal-hero-sub">Transparent salary benchmarks for India's tech industry. Filter by role, experience, city, and company — no sign-up required.</p>
+      <div class="sal-hero-tags">
+        <span class="search-tag active" data-role="Engineering">Engineering</span>
+        <span class="search-tag" data-role="Design">Design</span>
+        <span class="search-tag" data-role="Data & AI">Data & AI</span>
+        <span class="search-tag" data-role="Marketing">Marketing</span>
+        <span class="search-tag" data-role="Product">Product</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlight Stats -->
+  <div class="sal-stats-strip">
+    <div class="sal-stats-inner">
+      <div class="sal-stat">
+        <span class="sal-stat-icon">↑</span>
+        <div>
+          <p class="sal-stat-val">18.4%</p>
+          <p class="sal-stat-key">YoY salary growth (Senior Eng)</p>
+        </div>
+      </div>
+      <div class="sal-stat-div"></div>
+      <div class="sal-stat">
+        <span class="sal-stat-icon">₹</span>
+        <div>
+          <p class="sal-stat-val">₹ 42L</p>
+          <p class="sal-stat-key">Median total comp (5+ yrs)</p>
+        </div>
+      </div>
+      <div class="sal-stat-div"></div>
+      <div class="sal-stat">
+        <span class="sal-stat-icon">⌖</span>
+        <div>
+          <p class="sal-stat-val">Bengaluru</p>
+          <p class="sal-stat-key">Highest paying city</p>
+        </div>
+      </div>
+      <div class="sal-stat-div"></div>
+      <div class="sal-stat">
+        <span class="sal-stat-icon">≡</span>
+        <div>
+          <p class="sal-stat-val">Remote +12%</p>
+          <p class="sal-stat-key">Premium vs. office-only roles</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="sal-main">
+
+    <!-- Left: Controls + Bars -->
+    <div class="sal-left">
+
+      <!-- Experience Toggle -->
+      <div class="sal-controls">
+        <div class="sal-ctrl-group">
+          <span class="sal-ctrl-label">Experience</span>
+          <div class="pill-bar" id="expPillBar">
+            <div class="pill-highlight" id="expPillHl"></div>
+            <button class="pill active" data-exp="All">All</button>
+            <button class="pill" data-exp="Junior">Junior</button>
+            <button class="pill" data-exp="Mid">Mid-level</button>
+            <button class="pill" data-exp="Senior">Senior</button>
+            <button class="pill" data-exp="Lead">Lead+</button>
+          </div>
+        </div>
+        <div class="sal-ctrl-group">
+          <span class="sal-ctrl-label">City</span>
+          <div class="pill-bar" id="cityPillBar">
+            <div class="pill-highlight" id="cityPillHl"></div>
+            <button class="pill active" data-city="All">All</button>
+            <button class="pill" data-city="Bengaluru">Bengaluru</button>
+            <button class="pill" data-city="Mumbai">Mumbai</button>
+            <button class="pill" data-city="Hyderabad">Hyderabad</button>
+            <button class="pill" data-city="Noida">Noida</button>
+            <button class="pill" data-city="Remote">Remote</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role Label -->
+      <div class="sal-section-header">
+        <h2 class="sal-section-title">Salary ranges by role</h2>
+        <span class="sal-section-sub" id="salRoleCategory">Engineering</span>
+      </div>
+
+      <!-- Salary Bars -->
+      <div class="sal-bars" id="salBars"></div>
+
+    </div>
+
+    <!-- Right: Calculator + Top Companies -->
+    <div class="sal-right">
+
+      <!-- Salary Estimator -->
+      <div class="sal-card sal-calc-card">
+        <p class="sal-card-eyebrow">// tool</p>
+        <h3 class="sal-card-title">Salary Estimator</h3>
+        <p class="sal-card-sub">Select your role and experience level to see where you stand.</p>
+
+        <div class="sal-form">
+          <div class="sal-field">
+            <label class="sal-field-label" for="calcRole">Role</label>
+            <select class="co-sort-select" id="calcRole" style="width:100%;">
+              <option value="Frontend Engineer">Frontend Engineer</option>
+              <option value="Backend Engineer">Backend Engineer</option>
+              <option value="Data Scientist">Data Scientist</option>
+              <option value="Product Designer">Product Designer</option>
+              <option value="DevOps Engineer">DevOps Engineer</option>
+              <option value="ML Engineer">ML Engineer</option>
+              <option value="Product Manager">Product Manager</option>
+              <option value="Security Engineer">Security Engineer</option>
+            </select>
+          </div>
+          <div class="sal-field">
+            <label class="sal-field-label" for="calcExp">Experience</label>
+            <select class="co-sort-select" id="calcExp" style="width:100%;">
+              <option value="Junior">Junior (0–2 yr)</option>
+              <option value="Mid">Mid-level (2–5 yr)</option>
+              <option value="Senior">Senior (5–8 yr)</option>
+              <option value="Lead">Lead / Staff (8+ yr)</option>
+            </select>
+          </div>
+          <div class="sal-field">
+            <label class="sal-field-label" for="calcCity">City</label>
+            <select class="co-sort-select" id="calcCity" style="width:100%;">
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Noida">Noida</option>
+              <option value="Remote">Remote</option>
+            </select>
+          </div>
+          <button class="sal-calc-btn" id="calcBtn">Calculate →</button>
+        </div>
+
+        <div class="sal-calc-result" id="calcResult" style="display:none;">
+          <div class="sal-result-row">
+            <div class="sal-result-item">
+              <span class="sal-result-label">Low</span>
+              <span class="sal-result-val" id="resLow">—</span>
+            </div>
+            <div class="sal-result-item sal-result-mid">
+              <span class="sal-result-label">Median</span>
+              <span class="sal-result-val sal-result-highlight" id="resMid">—</span>
+            </div>
+            <div class="sal-result-item">
+              <span class="sal-result-label">High</span>
+              <span class="sal-result-val" id="resHigh">—</span>
+            </div>
+          </div>
+          <div class="sal-result-bar-wrap">
+            <div class="sal-result-bar" id="resBar">
+              <div class="sal-result-bar-fill" id="resBarFill"></div>
+              <div class="sal-result-bar-mid" id="resBarMid"></div>
+            </div>
+          </div>
+          <p class="sal-result-note" id="resNote"></p>
+        </div>
+      </div>
+
+      <!-- Top Paying Companies -->
+      <div class="sal-card">
+        <p class="sal-card-eyebrow">// leaderboard</p>
+        <h3 class="sal-card-title">Top paying companies</h3>
+        <p class="sal-card-sub">Ranked by median total compensation for senior+ engineers.</p>
+        <div class="sal-top-companies" id="topCompanies"></div>
+      </div>
+
+      <!-- City Comparison -->
+      <div class="sal-card">
+        <p class="sal-card-eyebrow">// geography</p>
+        <h3 class="sal-card-title">Salary by city</h3>
+        <p class="sal-card-sub">Median total comp for mid-level engineers.</p>
+        <div class="sal-city-bars" id="cityBars"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- CTA Band -->
+  <section class="sal-cta-band">
+    <div class="sal-cta-inner">
+      <h2 class="sal-cta-title">Ready to find a role that pays what you're worth?</h2>
+      <a href="index.html" class="btn-banner-primary" data-page="browse" style="display:inline-block;text-decoration:none;">Browse open roles →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
+        <p class="footer-tagline">// terminal-grade job search</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html" data-page="browse">Browse</a>
+        <a href="companies.html" data-page="companies">Companies</a>
+        <a href="salaries.html" data-page="salaries">Salaries</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">API</a>
+      </div>
+      <p class="footer-copy">© 2026 VoidJobs. All systems nominal.</p>
+    </div>
+  </footer>
+
+  <script src="void-core.js"></script>
+  <script src="salaries.js"></script>
+</body>
+</html>

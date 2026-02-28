@@ -1,0 +1,574 @@
+/* ═══════════════════════════════════════════════════════════════
+   SALARIES PAGE — salaries.css
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Hero ─────────────────────────────────────────────────── */
+.sal-hero {
+  position: relative;
+  min-height: 52vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7rem 2rem 4rem;
+  border-bottom: 1px solid rgba(245,166,35,.08);
+}
+
+.sal-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 30% 60%, rgba(245,166,35,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 75% 30%, rgba(0,201,167,.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sal-hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 780px;
+}
+
+.sal-hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--text);
+  margin: .6rem 0 1.2rem;
+  letter-spacing: -.03em;
+}
+.sal-hero-title em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.sal-hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .95rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 2rem;
+}
+
+.sal-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+}
+
+.sal-hero-tags .search-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .35rem .85rem;
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,.1);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color .25s, color .25s, background .25s;
+}
+.sal-hero-tags .search-tag.active,
+.sal-hero-tags .search-tag:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: rgba(245,166,35,.06);
+}
+
+/* ─── Stats Strip ───────────────────────────────────────────── */
+.sal-stats-strip {
+  background: rgba(13,17,23,.7);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.sal-stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+.sal-stat {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex: 1;
+  min-width: 160px;
+}
+.sal-stat-icon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.3rem;
+  color: var(--amber);
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.sal-stat-val {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin: 0 0 .1rem;
+}
+.sal-stat-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem;
+  color: var(--text-dim);
+  margin: 0;
+  letter-spacing: .02em;
+}
+.sal-stat-div {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,.07);
+  flex-shrink: 0;
+}
+
+/* ─── Main Layout ───────────────────────────────────────────── */
+.sal-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ─── Controls ──────────────────────────────────────────────── */
+.sal-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+.sal-ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.sal-ctrl-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+  width: 76px;
+  flex-shrink: 0;
+}
+
+/* ─── Section Header ────────────────────────────────────────── */
+.sal-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  padding-bottom: .8rem;
+}
+.sal-section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0;
+}
+.sal-section-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--teal);
+  text-transform: uppercase;
+}
+
+/* ─── Salary Bar Rows ───────────────────────────────────────── */
+.sal-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sal-bar-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 110px;
+  align-items: center;
+  gap: 1rem;
+  padding: .85rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
+}
+.sal-bar-row.revealed {
+  opacity: 1;
+  transform: none;
+}
+.sal-bar-row:hover {
+  background: rgba(245,166,35,.03);
+}
+.sal-bar-row:hover .sal-bar-label {
+  color: var(--amber);
+}
+
+.sal-bar-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .82rem;
+  color: var(--text);
+  transition: color .2s;
+  padding-right: .5rem;
+}
+
+.sal-bar-track {
+  position: relative;
+  height: 6px;
+  background: rgba(255,255,255,.06);
+  border-radius: 3px;
+  overflow: visible;
+}
+
+.sal-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(245,166,35,.35), var(--amber));
+  width: 0%;
+  transition: width .8s cubic-bezier(.22,1,.36,1);
+}
+
+.sal-bar-dot {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--amber);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform .4s cubic-bezier(.22,1,.36,1) .6s, left .8s cubic-bezier(.22,1,.36,1);
+  box-shadow: 0 0 8px rgba(245,166,35,.6);
+}
+.sal-bar-row.revealed .sal-bar-dot {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.sal-bar-range {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  color: var(--text-dim);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ─── Right Panel Cards ─────────────────────────────────────── */
+.sal-right {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sal-card {
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: border-color .25s;
+}
+.sal-card:hover {
+  border-color: rgba(245,166,35,.25);
+}
+
+.sal-card-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .14em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin: 0 0 .5rem;
+}
+.sal-card-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0 0 .3rem;
+}
+.sal-card-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  color: var(--text-dim);
+  margin: 0 0 1.2rem;
+  line-height: 1.5;
+}
+
+/* ─── Salary Calculator ─────────────────────────────────────── */
+.sal-form {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.sal-field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+.sal-field-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.sal-calc-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: #000;
+  background: var(--amber);
+  border: none;
+  border-radius: 2px;
+  padding: .65rem 1rem;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+  margin-top: .3rem;
+}
+.sal-calc-btn:hover {
+  background: #ffbd45;
+  transform: translateY(-1px);
+}
+.sal-calc-btn:active {
+  transform: none;
+}
+
+/* Result */
+.sal-calc-result {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,.07);
+  animation: fadeSlideUp .4s cubic-bezier(.22,1,.36,1);
+}
+@keyframes fadeSlideUp {
+  from { opacity:0; transform: translateY(10px); }
+  to   { opacity:1; transform: none; }
+}
+
+.sal-result-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: .5rem;
+  margin-bottom: 1rem;
+}
+.sal-result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+}
+.sal-result-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.sal-result-val {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+.sal-result-highlight {
+  font-size: 1.3rem;
+  color: var(--amber);
+}
+
+.sal-result-bar-wrap {
+  margin-bottom: .7rem;
+}
+.sal-result-bar {
+  position: relative;
+  height: 8px;
+  background: rgba(255,255,255,.06);
+  border-radius: 4px;
+  overflow: visible;
+}
+.sal-result-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(245,166,35,.3), var(--amber));
+  transition: width .7s cubic-bezier(.22,1,.36,1);
+}
+.sal-result-bar-mid {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: var(--amber);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(245,166,35,.7);
+  transition: left .7s cubic-bezier(.22,1,.36,1);
+}
+.sal-result-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── Top Companies Leaderboard ─────────────────────────────── */
+.sal-top-companies {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.sal-co-row {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: .7rem;
+  padding: .6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity .4s, transform .4s;
+}
+.sal-co-row.revealed {
+  opacity: 1;
+  transform: none;
+}
+.sal-co-rank {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  color: var(--amber);
+  font-weight: 500;
+}
+.sal-co-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem;
+  color: var(--text);
+}
+.sal-co-pay {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--teal);
+  white-space: nowrap;
+}
+
+/* ─── City Bars ─────────────────────────────────────────────── */
+.sal-city-bars {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+.sal-city-bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 60px;
+  gap: .7rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity .4s, transform .4s;
+}
+.sal-city-bar-row.revealed {
+  opacity: 1;
+  transform: none;
+}
+.sal-city-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  color: var(--text-dim);
+  text-align: right;
+}
+.sal-city-track {
+  height: 6px;
+  background: rgba(255,255,255,.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.sal-city-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(0,201,167,.3), var(--teal));
+  width: 0%;
+  transition: width .8s cubic-bezier(.22,1,.36,1);
+}
+.sal-city-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  color: var(--teal);
+  font-weight: 500;
+}
+
+/* ─── CTA Band ──────────────────────────────────────────────── */
+.sal-cta-band {
+  background: linear-gradient(135deg, rgba(245,166,35,.06) 0%, rgba(0,201,167,.04) 100%);
+  border-top: 1px solid rgba(245,166,35,.12);
+  border-bottom: 1px solid rgba(245,166,35,.06);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.sal-cta-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.sal-cta-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .sal-main {
+    grid-template-columns: 1fr;
+  }
+  .sal-right {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .sal-hero {
+    padding: 6rem 1.2rem 3rem;
+  }
+  .sal-stats-inner {
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+  }
+  .sal-stat-div { display: none; }
+  .sal-stat { min-width: 130px; }
+  .sal-main { padding: 2rem 1.2rem 3rem; }
+  .sal-bar-row {
+    grid-template-columns: 140px 1fr 90px;
+  }
+  .sal-ctrl-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+  .sal-ctrl-label { width: auto; }
+}
