@@ -576,6 +576,7 @@ body {
   width: 100%;
   height: 40px;
   pointer-events: none;
+  appearance: none;
   -webkit-appearance: none;
   background: transparent;
 }
