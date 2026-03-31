@@ -47,7 +47,7 @@ const JOBS = [
     description: 'Shape the visual language of India\'s leading payments platform. You\'ll design across the full product — from merchant dashboards and checkout flows to internal tooling and the RazorpayX neobanking suite.',
     requirements: [
       '3–5 years of product design experience, preferably in fintech or B2B SaaS',
-      'Expert-level Figma skills; ability to prototype complex interactions',
+      'Expert-level Figma skilllls; ability to prototype complex interactions',
       'Understanding of front-end constraints; basic HTML/CSS knowledge',
       'Portfolio demonstrating systems thinking and high visual craft',
       'Experience contributing to or owning a design system at scale',
