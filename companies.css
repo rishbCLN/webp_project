@@ -159,7 +159,7 @@
   padding: 1.75rem;
   position: relative;
   overflow: hidden;
-  cursor: none;
+  cursor: pointer;
   opacity: 0;
   transform: translateY(36px);
   transition: transform 0.4s var(--spring), box-shadow 0.4s var(--spring),
@@ -318,7 +318,7 @@
   border: 1px solid rgba(245,166,35,0.3);
   border-radius: 6px;
   padding: 0.45rem 0.9rem;
-  cursor: none;
+  cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
   white-space: nowrap;
 }
@@ -404,7 +404,7 @@
   border: none;
   border-radius: 8px;
   padding: 0.85rem 2rem;
-  cursor: none;
+  cursor: pointer;
   text-decoration: none;
   display: inline-block;
   text-align: center;
@@ -423,7 +423,7 @@
   border: 1px solid var(--border-mid);
   border-radius: 8px;
   padding: 0.85rem 2rem;
-  cursor: none;
+  cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }
 .btn-banner-secondary:hover { border-color: var(--amber); color: var(--amber); }
