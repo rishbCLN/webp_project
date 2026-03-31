@@ -1,10 +1,5 @@
-/* ============================================================
-   VOID TERMINAL — companies.js
-   ============================================================ */
-
 'use strict';
 
-/* ── Company Data ──────────────────────────────────────────── */
 const COMPANIES = [
   {
     id: 1,
@@ -164,7 +159,6 @@ const COMPANIES = [
   },
 ];
 
-/* ── State ─────────────────────────────────────────────────── */
 const state = {
   query:    '',
   industry: 'All',
@@ -172,7 +166,6 @@ const state = {
   filtered: [...COMPANIES],
 };
 
-/* ── DOM Refs ──────────────────────────────────────────────── */
 const coGrid       = document.getElementById('coGrid');
 const coEmpty      = document.getElementById('coEmpty');
 const coSearch     = document.getElementById('coSearch');
@@ -182,10 +175,6 @@ const coSort       = document.getElementById('coSort');
 const coPillHighlight = document.getElementById('coPillHighlight');
 const coPillBar       = document.getElementById('coPillBar');
 
-/* ── Particles ─────────────────────────────────────────────── */
-initParticleCanvas('particleCanvas', 45, 110, 0.4, 0.14);
-
-/* ── Pill Bar ──────────────────────────────────────────────── */
 function updatePillHL(target) {
   const barRect  = coPillBar.getBoundingClientRect();
   const pillRect = target.getBoundingClientRect();
@@ -213,7 +202,6 @@ window.addEventListener('resize', () => {
   if (active) updatePillHL(active);
 }, { passive: true });
 
-/* ── Search ────────────────────────────────────────────────── */
 coSearch.addEventListener('input', () => {
   state.query = coSearch.value.toLowerCase().trim();
   applyFilters();
@@ -222,13 +210,11 @@ coSearch.addEventListener('input', () => {
 coSearch.addEventListener('focus', () => coSearchBox.classList.add('focused'));
 coSearch.addEventListener('blur',  () => coSearchBox.classList.remove('focused'));
 
-/* ── Sort ──────────────────────────────────────────────────── */
 coSort.addEventListener('change', () => {
   state.sort = coSort.value;
   applyFilters();
 });
 
-/* ── Filter + Sort Logic ───────────────────────────────────── */
 function applyFilters() {
   let results = COMPANIES.filter(co => {
     if (state.query && !co.name.toLowerCase().includes(state.query) &&
@@ -239,7 +225,6 @@ function applyFilters() {
     return true;
   });
 
-  // Sort
   if (state.sort === 'name')    results = results.slice().sort((a,b) => a.name.localeCompare(b.name));
   if (state.sort === 'jobs')    results = results.slice().sort((a,b) => b.openRoles - a.openRoles);
   if (state.sort === 'founded') results = results.slice().sort((a,b) => b.founded - a.founded);
@@ -248,14 +233,12 @@ function applyFilters() {
   renderCards(results);
 }
 
-/* ── Render ────────────────────────────────────────────────── */
 let firstRender = true;
 
 function renderCards(companies) {
   if (visibleCount) visibleCount.textContent = companies.length;
 
   if (!firstRender) {
-    // Animate out existing cards
     const existing = [...coGrid.querySelectorAll('.company-card')];
     existing.forEach((c, i) => {
       c.style.transitionDelay = (i * 25) + 'ms';
@@ -277,7 +260,6 @@ function renderCards(companies) {
       }
     }, Math.min(existing.length * 25 + 160, 320));
   } else {
-    // First render
     firstRender = false;
     coGrid.innerHTML = '';
     if (!companies.length) {
@@ -293,7 +275,6 @@ function renderCards(companies) {
   }
 }
 
-/* ── Card Factory ──────────────────────────────────────────── */
 function getIndustryBadgeClass(industry) {
   const map = {
     'Fintech':    'cc-badge-fintech',
@@ -344,7 +325,6 @@ function createCard(co) {
   `;
 
   card.querySelector('.cc-view-btn').addEventListener('click', () => {
-    // Navigate to index with company filter pre-selected
     sessionStorage.setItem('vt_nav', '1');
     sessionStorage.setItem('vt_company_filter', co.name);
     window.location.href = 'index.html';
@@ -360,5 +340,4 @@ function createCard(co) {
   return card;
 }
 
-/* ── Init ──────────────────────────────────────────────────── */
 renderCards(COMPANIES);

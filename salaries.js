@@ -1,12 +1,5 @@
 'use strict';
 
-/* ═══════════════════════════════════════════════════════════════
-   SALARIES PAGE — salaries.js
-   ═══════════════════════════════════════════════════════════════ */
-
-initParticleCanvas('particleCanvas', 45, 110, 0.45, 0.13);
-
-// ─── Data ────────────────────────────────────────────────────
 const SAL_DATA = {
   Engineering: [
     { role: 'Frontend Engineer',   city_mult: true, levels: { Junior: [8,12,16],  Mid: [18,26,36], Senior: [36,52,72], Lead: [60,85,115] } },
@@ -65,10 +58,8 @@ const CITY_BENCHMARKS = [
   { city: 'Noida',     median: 28 },
 ];
 
-// ─── State ───────────────────────────────────────────────────
 const state = { category: 'Engineering', exp: 'All', city: 'All' };
 
-// ─── Hero tag pills ──────────────────────────────────────────
 document.querySelectorAll('.sal-hero-tags .search-tag').forEach(tag => {
   tag.addEventListener('click', () => {
     document.querySelectorAll('.sal-hero-tags .search-tag').forEach(t => t.classList.remove('active'));
@@ -79,7 +70,6 @@ document.querySelectorAll('.sal-hero-tags .search-tag').forEach(tag => {
   });
 });
 
-// ─── Pill bars (experience + city) ──────────────────────────
 function initPillBar(barId, hlId, dataAttr, stateKey, cb) {
   const bar  = document.getElementById(barId);
   const hl   = document.getElementById(hlId);
@@ -102,7 +92,6 @@ function initPillBar(barId, hlId, dataAttr, stateKey, cb) {
     });
   });
 
-  // init position
   requestAnimationFrame(() => {
     const active = bar.querySelector('.pill.active') || pills[0];
     moveTo(active);
@@ -112,7 +101,6 @@ function initPillBar(barId, hlId, dataAttr, stateKey, cb) {
 initPillBar('expPillBar',  'expPillHl',  'exp',  'exp',  renderBars);
 initPillBar('cityPillBar', 'cityPillHl', 'city', 'city', renderBars);
 
-// ─── Salary Bar Renderer ─────────────────────────────────────
 function applyMult(val, city) {
   if (city === 'All') return val;
   return Math.round(val * (CITY_MULT[city] || 1));
@@ -121,9 +109,8 @@ function applyMult(val, city) {
 function renderBars() {
   const container = document.getElementById('salBars');
   const rows = SAL_DATA[state.category] || [];
-  const maxVal = 150; // scale reference in LPA
+  const maxVal = 150;
 
-  // exit old rows
   container.querySelectorAll('.sal-bar-row').forEach(r => {
     r.classList.remove('revealed');
   });
@@ -162,7 +149,6 @@ function renderBars() {
         <span class="sal-bar-range">₹${lo}L – ${hi}L</span>`;
       container.appendChild(el);
 
-      // staggered reveal
       setTimeout(() => {
         el.classList.add('revealed');
         const fill = el.querySelector('.sal-bar-fill');
@@ -174,7 +160,6 @@ function renderBars() {
   }, 200);
 }
 
-// ─── Top Companies ───────────────────────────────────────────
 function renderTopCompanies() {
   const container = document.getElementById('topCompanies');
   TOP_COMPANIES.forEach((co, i) => {
@@ -189,7 +174,6 @@ function renderTopCompanies() {
   });
 }
 
-// ─── City Bars ───────────────────────────────────────────────
 function renderCityBars() {
   const container = document.getElementById('cityBars');
   const maxCity = Math.max(...CITY_BENCHMARKS.map(c => c.median));
@@ -211,13 +195,11 @@ function renderCityBars() {
   });
 }
 
-// ─── Salary Calculator ───────────────────────────────────────
 document.getElementById('calcBtn').addEventListener('click', () => {
   const role   = document.getElementById('calcRole').value;
   const expKey = document.getElementById('calcExp').value;
   const city   = document.getElementById('calcCity').value;
 
-  // find role in data
   let found = null;
   for (const cat of Object.values(SAL_DATA)) {
     found = cat.find(r => r.role === role);
@@ -250,7 +232,6 @@ document.getElementById('calcBtn').addEventListener('click', () => {
     `Based on ${expKey === 'Junior' ? '0–2' : expKey === 'Mid' ? '2–5' : expKey === 'Senior' ? '5–8' : '8+'} yrs experience as a ${role} in ${city}. Numbers reflect total compensation (base + RSU + bonus).`;
 });
 
-// ─── Init ────────────────────────────────────────────────────
 renderBars();
 renderTopCompanies();
 renderCityBars();

@@ -7,16 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style-simple.css" />
   <link rel="stylesheet" href="companies.css" />
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Navbar -->
   <nav class="navbar scrolled" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" data-page="browse">
@@ -24,7 +19,6 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link" data-page="browse">Browse</a></li>
-        <li><a href="index.html" class="nav-link" data-page="browse">Saved Jobs</a></li>
         <li><a href="companies.html" class="nav-link active" data-page="companies">Companies</a></li>
         <li><a href="salaries.html" class="nav-link" data-page="salaries">Salaries</a></li>
       </ul>
@@ -35,9 +29,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <section class="co-hero">
-    <canvas class="particle-canvas" id="particleCanvas"></canvas>
     <div class="co-hero-inner">
       <p class="hero-eyebrow">// 48 featured companies · 300+ open roles</p>
       <h1 class="co-hero-title">India's most <em>ambitious</em><br/>tech companies, in one place</h1>
@@ -51,7 +43,6 @@
     </div>
   </section>
 
-  <!-- Stats Strip -->
   <div class="co-stats-strip">
     <div class="co-stats-inner">
       <div class="co-stat">
@@ -76,7 +67,6 @@
     </div>
   </div>
 
-  <!-- Filter Pills -->
   <div class="co-filter-row" id="coFilterRow">
     <div class="pill-bar" id="coPillBar">
       <div class="pill-highlight" id="coPillHighlight"></div>
@@ -99,23 +89,14 @@
     </div>
   </div>
 
-  <!-- Company Grid -->
   <main class="co-main">
     <div class="co-grid" id="coGrid"></div>
     <div class="empty-state" id="coEmpty" style="display:none;">
-      <div class="radar-container">
-        <div class="radar-ring r1"></div>
-        <div class="radar-ring r2"></div>
-        <div class="radar-ring r3"></div>
-        <div class="radar-sweep"></div>
-        <div class="radar-dot"></div>
-      </div>
       <p class="empty-title">No companies found</p>
       <p class="empty-sub">Try adjusting your search or filter.</p>
     </div>
   </main>
 
-  <!-- Featured Banner -->
   <section class="co-banner">
     <div class="co-banner-inner">
       <div class="co-banner-text">
@@ -130,7 +111,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -149,7 +129,6 @@
     </div>
   </footer>
 
-  <script src="void-core.js"></script>
   <script src="companies.js"></script>
 </body>
 </html>

@@ -7,24 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style-simple.css" />
   <link rel="stylesheet" href="salaries.css" />
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Navbar -->
   <nav class="navbar scrolled" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" data-page="browse">
         <span class="logo-bracket">[</span>VOID<span class="logo-accent">JOBS</span><span class="logo-bracket">]</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html"    class="nav-link" data-page="browse">Browse</a></li>
-        <li><a href="index.html"    class="nav-link" data-page="browse">Saved Jobs</a></li>
+        <li><a href="index.html" class="nav-link" data-page="browse">Browse</a></li>
         <li><a href="companies.html" class="nav-link" data-page="companies">Companies</a></li>
         <li><a href="salaries.html" class="nav-link active" data-page="salaries">Salaries</a></li>
       </ul>
@@ -35,9 +29,7 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <section class="sal-hero">
-    <canvas class="particle-canvas" id="particleCanvas"></canvas>
     <div class="sal-hero-inner">
       <p class="hero-eyebrow">// real data · 3,400+ verified salaries · updated Feb 2026</p>
       <h1 class="sal-hero-title">Know your <em>worth</em></h1>
@@ -52,7 +44,6 @@
     </div>
   </section>
 
-  <!-- Highlight Stats -->
   <div class="sal-stats-strip">
     <div class="sal-stats-inner">
       <div class="sal-stat">
@@ -89,13 +80,10 @@
     </div>
   </div>
 
-  <!-- Main Content -->
   <main class="sal-main">
 
-    <!-- Left: Controls + Bars -->
     <div class="sal-left">
 
-      <!-- Experience Toggle -->
       <div class="sal-controls">
         <div class="sal-ctrl-group">
           <span class="sal-ctrl-label">Experience</span>
@@ -122,21 +110,17 @@
         </div>
       </div>
 
-      <!-- Role Label -->
       <div class="sal-section-header">
         <h2 class="sal-section-title">Salary ranges by role</h2>
         <span class="sal-section-sub" id="salRoleCategory">Engineering</span>
       </div>
 
-      <!-- Salary Bars -->
       <div class="sal-bars" id="salBars"></div>
 
     </div>
 
-    <!-- Right: Calculator + Top Companies -->
     <div class="sal-right">
 
-      <!-- Salary Estimator -->
       <div class="sal-card sal-calc-card">
         <p class="sal-card-eyebrow">// tool</p>
         <h3 class="sal-card-title">Salary Estimator</h3>
@@ -203,7 +187,6 @@
         </div>
       </div>
 
-      <!-- Top Paying Companies -->
       <div class="sal-card">
         <p class="sal-card-eyebrow">// leaderboard</p>
         <h3 class="sal-card-title">Top paying companies</h3>
@@ -211,7 +194,6 @@
         <div class="sal-top-companies" id="topCompanies"></div>
       </div>
 
-      <!-- City Comparison -->
       <div class="sal-card">
         <p class="sal-card-eyebrow">// geography</p>
         <h3 class="sal-card-title">Salary by city</h3>
@@ -222,7 +204,6 @@
     </div>
   </main>
 
-  <!-- CTA Band -->
   <section class="sal-cta-band">
     <div class="sal-cta-inner">
       <h2 class="sal-cta-title">Ready to find a role that pays what you're worth?</h2>
@@ -230,7 +211,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -249,7 +229,6 @@
     </div>
   </footer>
 
-  <script src="void-core.js"></script>
   <script src="salaries.js"></script>
 </body>
 </html>

@@ -7,15 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style-simple.css" />
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo" id="logoBtn">
@@ -23,7 +18,6 @@
       </a>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link active" data-page="browse">Browse</a></li>
-        <li><a href="#" class="nav-link" data-view="saved">Saved Jobs</a></li>
         <li><a href="companies.html" class="nav-link" data-page="companies">Companies</a></li>
         <li><a href="salaries.html" class="nav-link" data-page="salaries">Salaries</a></li>
       </ul>
@@ -36,9 +30,7 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="hero">
-    <canvas class="particle-canvas" id="particleCanvas"></canvas>
     <div class="hero-content">
       <p class="hero-eyebrow">// 2,847 open positions</p>
       <h1 class="hero-headline">Find work that<br /><em>doesn't feel like work</em></h1>
@@ -70,13 +62,8 @@
       </div>
       <p class="hero-sub">Trusted by engineers at <span class="hero-company">Zerodha</span>, <span class="hero-company">Razorpay</span>, <span class="hero-company">Flipkart</span></p>
     </div>
-    <div class="hero-scroll-hint">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
-  <!-- Job Type Pill Toggle -->
   <div class="pill-bar-wrapper" id="pillBarWrapper">
     <div class="pill-bar" id="pillBar">
       <div class="pill-highlight" id="pillHighlight"></div>
@@ -94,17 +81,14 @@
     </div>
   </div>
 
-  <!-- Main Content -->
   <main class="main-content" id="mainContent">
 
-    <!-- Filter Sidebar -->
     <aside class="filter-sidebar" id="filterSidebar">
       <div class="sidebar-header">
         <h3 class="sidebar-title">Filters</h3>
         <button class="clear-filters-btn" id="clearFilters">Clear All</button>
       </div>
 
-      <!-- Location Filter -->
       <div class="filter-section" id="filterLocation">
         <button class="filter-toggle" aria-expanded="true">
           <span>Location</span>
@@ -127,7 +111,6 @@
         </div>
       </div>
 
-      <!-- Job Type Filter -->
       <div class="filter-section" id="filterJobType">
         <button class="filter-toggle" aria-expanded="true">
           <span>Job Type</span>
@@ -175,7 +158,6 @@
         </div>
       </div>
 
-      <!-- Experience Level -->
       <div class="filter-section" id="filterExp">
         <button class="filter-toggle" aria-expanded="true">
           <span>Experience Level</span>
@@ -212,7 +194,6 @@
         </div>
       </div>
 
-      <!-- Salary Range -->
       <div class="filter-section" id="filterSalary">
         <button class="filter-toggle" aria-expanded="true">
           <span>Salary Range</span>
@@ -238,49 +219,17 @@
 
     </aside>
 
-    <!-- Job Grid -->
     <section class="job-grid-section">
       <div class="job-grid" id="jobGrid">
-        <!-- Cards dynamically rendered by JS -->
       </div>
       <div class="empty-state" id="emptyState" style="display:none;">
-        <div class="radar-container">
-          <div class="radar-ring r1"></div>
-          <div class="radar-ring r2"></div>
-          <div class="radar-ring r3"></div>
-          <div class="radar-sweep"></div>
-          <div class="radar-dot"></div>
-        </div>
-        <p class="empty-title">Scanning for opportunities...</p>
+        <p class="empty-title">No jobs found</p>
         <p class="empty-sub">No jobs match your current filters. Try adjusting the search.</p>
       </div>
     </section>
 
   </main>
 
-  <!-- Saved Jobs View -->
-  <section class="saved-view" id="savedView" style="display:none;">
-    <div class="saved-view-inner">
-      <div class="saved-header">
-        <h2 class="saved-title">Saved Jobs</h2>
-        <p class="saved-sub" id="savedCount">0 bookmarked positions</p>
-      </div>
-      <div class="job-grid" id="savedGrid"></div>
-      <div class="empty-state" id="savedEmptyState" style="display:none;">
-        <div class="radar-container">
-          <div class="radar-ring r1"></div>
-          <div class="radar-ring r2"></div>
-          <div class="radar-ring r3"></div>
-          <div class="radar-sweep"></div>
-          <div class="radar-dot"></div>
-        </div>
-        <p class="empty-title">No saved jobs yet</p>
-        <p class="empty-sub">Bookmark listings and they'll appear here.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Job Detail Modal -->
   <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" id="modalClose" aria-label="Close modal">
@@ -289,12 +238,10 @@
         </svg>
       </button>
       <div class="modal-inner" id="modalInner">
-        <!-- Filled dynamically -->
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -312,7 +259,6 @@
     </div>
   </footer>
 
-  <script src="void-core.js"></script>
-  <script src="script.js"></script>
+  <script src="script-simple.js"></script>
 </body>
 </html>
