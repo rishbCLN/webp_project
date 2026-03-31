@@ -1,8 +1,3 @@
-/* ═══════════════════════════════════════════════════════════════
-   SALARIES PAGE — salaries.css
-   ═══════════════════════════════════════════════════════════════ */
-
-/* ─── Hero ─────────────────────────────────────────────────── */
 .sal-hero {
   position: relative;
   min-height: 52vh;
@@ -82,7 +77,6 @@
   background: rgba(245,166,35,.06);
 }
 
-/* ─── Stats Strip ───────────────────────────────────────────── */
 .sal-stats-strip {
   background: rgba(13,17,23,.7);
   border-bottom: 1px solid rgba(255,255,255,.05);
@@ -132,7 +126,6 @@
   flex-shrink: 0;
 }
 
-/* ─── Main Layout ───────────────────────────────────────────── */
 .sal-main {
   max-width: 1200px;
   margin: 0 auto;
@@ -143,7 +136,6 @@
   align-items: start;
 }
 
-/* ─── Controls ──────────────────────────────────────────────── */
 .sal-controls {
   display: flex;
   flex-direction: column;
@@ -167,7 +159,6 @@
   flex-shrink: 0;
 }
 
-/* ─── Section Header ────────────────────────────────────────── */
 .sal-section-header {
   display: flex;
   align-items: baseline;
@@ -191,7 +182,6 @@
   text-transform: uppercase;
 }
 
-/* ─── Salary Bar Rows ───────────────────────────────────────── */
 .sal-bars {
   display: flex;
   flex-direction: column;
@@ -270,7 +260,6 @@
   white-space: nowrap;
 }
 
-/* ─── Right Panel Cards ─────────────────────────────────────── */
 .sal-right {
   position: sticky;
   top: 90px;
@@ -313,7 +302,6 @@
   line-height: 1.5;
 }
 
-/* ─── Salary Calculator ─────────────────────────────────────── */
 .sal-form {
   display: flex;
   flex-direction: column;
@@ -354,16 +342,10 @@
   transform: none;
 }
 
-/* Result */
 .sal-calc-result {
   margin-top: 1.4rem;
   padding-top: 1.2rem;
   border-top: 1px solid rgba(255,255,255,.07);
-  animation: fadeSlideUp .4s cubic-bezier(.22,1,.36,1);
-}
-@keyframes fadeSlideUp {
-  from { opacity:0; transform: translateY(10px); }
-  to   { opacity:1; transform: none; }
 }
 
 .sal-result-row {
@@ -431,7 +413,6 @@
   margin: 0;
 }
 
-/* ─── Top Companies Leaderboard ─────────────────────────────── */
 .sal-top-companies {
   display: flex;
   flex-direction: column;
@@ -471,7 +452,6 @@
   white-space: nowrap;
 }
 
-/* ─── City Bars ─────────────────────────────────────────────── */
 .sal-city-bars {
   display: flex;
   flex-direction: column;
@@ -516,7 +496,6 @@
   font-weight: 500;
 }
 
-/* ─── CTA Band ──────────────────────────────────────────────── */
 .sal-cta-band {
   background: linear-gradient(135deg, rgba(245,166,35,.06) 0%, rgba(0,201,167,.04) 100%);
   border-top: 1px solid rgba(245,166,35,.12);
@@ -541,7 +520,6 @@
   line-height: 1.2;
 }
 
-/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .sal-main {
     grid-template-columns: 1fr;
