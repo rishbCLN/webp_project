@@ -35,7 +35,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(10, 21, 26, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   padding: 1rem 2rem;
