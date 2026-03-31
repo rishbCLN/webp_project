@@ -16,7 +16,7 @@ const COMPANIES = [
   },
   {
     id: 2,
-    name: 'Razorpay',
+    name: 'Razo',
     initial: 'RZ',
     color: '#2EB5C9',
     industry: 'Fintech',
