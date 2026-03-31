@@ -3,7 +3,7 @@
 const COMPANIES = [
   {
     id: 1,
-    name: 'Zero',
+    name: 'Z',
     initial: 'ZE',
     color: '#387ED1',
     industry: 'Fintech',
